@@ -1,19 +1,22 @@
 import './Cell.css';
-import React, { useState } from 'react';
+import { useState, useContext } from 'react';
+import { CounterContext } from './CounterProvider';
 
-export function Cell(props) {
+export function Cell() {
     const [cellColor, setCellColor] = useState("white");
+    const [countState, setCountState] = useContext(CounterContext);
+
     const handleClick = () => {
         if (cellColor === "white") {
             setCellColor("black");
-            props.onClick(1);
+            setCountState(countState + 1);
         } else {
             setCellColor("white");
-            props.onClick(-1);
+            setCountState(countState - 1);
         }
     }
 
-    let cellClassName = 'box'; 
+    let cellClassName = 'box';
     if (cellColor === 'black') {
         cellClassName = 'box-click';
     }

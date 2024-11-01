@@ -1,22 +1,19 @@
-import React, { useState } from 'react';
+import { useContext } from 'react';
 import './Grid.css';
 import { Cell } from './Cell';
+import { CounterContext } from './CounterProvider';
 
 export function Grid() {
-    const [onCount, setOnCount] = useState(0);
-
-    function updateCount(changeInCount) {
-        setOnCount((currentCount) => currentCount + changeInCount);
-    }
+    const [countState] = useContext(CounterContext);
 
     return (
         <div className="grid-container">
-            <h2>Count: {onCount}</h2>
+            <h2>Count: {countState}</h2>
             <div className="grid">
-                <Cell onClick={updateCount} />
-                <Cell onClick={updateCount} />
-                <Cell onClick={updateCount} />
-                <Cell onClick={updateCount} />
+                <Cell />
+                <Cell />
+                <Cell />
+                <Cell />
             </div>
         </div>
     );
